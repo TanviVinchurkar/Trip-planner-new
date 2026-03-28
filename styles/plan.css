@@ -1,0 +1,690 @@
+:root {
+  --primary: #2563EB;
+  --primary-dark: #1D4ED8;
+  --primary-light: #EFF6FF;
+  --success: #16A34A;
+  --warning: #F59E0B;
+  --danger: #DC2626;
+  --text-primary: #111827;
+  --text-secondary: #6B7280;
+  --text-muted: #9CA3AF;
+  --bg: #F9FAFB;
+  --card: #FFFFFF;
+  --border: #E5E7EB;
+  --border-dark: #D1D5DB;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.10);
+  --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.12);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--text-primary);
+  background-color: var(--bg);
+  opacity: 0;
+  animation: fadeIn 0.2s ease-in forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--text-primary);
+}
+
+h1 {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+h2 {
+  font-size: 32px;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+small {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+
+label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.card {
+  background: var(--card);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  padding: 20px;
+  margin: 16px;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+  padding: 12px 28px;
+  border-radius: var(--radius-full);
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-primary:hover {
+  background: var(--primary-dark);
+}
+
+input {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 15px;
+  color: var(--text-primary);
+  outline: none;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.10);
+}
+
+input::placeholder {
+  color: var(--text-muted);
+}
+
+/* LAYOUT */
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+/* LEFT PANEL */
+.left {
+  width: 420px;
+  flex-shrink: 0;
+  background: white;
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* HERO AREA */
+.hero {
+  position: relative;
+  height: 220px;
+}
+
+.hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.hero-text {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  color: white;
+  z-index: 10;
+}
+
+.hero-text h2 {
+  color: white;
+  margin-bottom: 4px;
+  font-size: 24px;
+}
+
+.hero-text p {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 14px;
+}
+
+.share-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: white;
+  color: var(--text-primary);
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 10;
+  box-shadow: var(--shadow-sm);
+}
+
+/* TABS */
+.tabs {
+  position: sticky;
+  top: 0;
+  background: white;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  z-index: 20;
+}
+
+.tabs button {
+  flex: 1;
+  background: none;
+  border: none;
+  padding: 16px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+}
+
+.tabs button.active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+}
+
+/* TAB CONTENT */
+.tab-content {
+  display: none;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ABOUT DESTINATION */
+.card h3 {
+  margin-bottom: 12px;
+}
+
+/* DAY CARDS */
+.day {
+  margin-bottom: 24px;
+  padding-left: 16px;
+  border-left: 4px solid var(--primary);
+}
+
+.day h4 {
+  font-size: 16px;
+  margin-bottom: 12px;
+  color: var(--primary);
+}
+
+.activity-list {
+  margin-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.activity-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.activity-item::before {
+  content: "•";
+  color: var(--primary);
+  font-weight: bold;
+}
+
+.activity-item .remove-btn {
+  margin-left: auto;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.activity-item:hover .remove-btn {
+  opacity: 1;
+}
+
+.add-activity {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.add-activity input {
+  padding: 8px 12px;
+}
+
+.add-btn {
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+}
+
+.action {
+  background: var(--bg);
+  border: 1px dashed var(--border);
+  color: var(--text-secondary);
+  padding: 10px;
+  border-radius: var(--radius-sm);
+  width: 100%;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+/* BUDGET BREAKDOWN */
+.budget-row {
+  margin-bottom: 16px;
+}
+
+.budget-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.budget-bar {
+  height: 6px;
+  background: var(--bg);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.budget-bar .fill {
+  height: 100%;
+}
+
+.per-person {
+  margin-top: 24px;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.per-person small {
+  display: block;
+  font-size: 13px;
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+/* HOTEL */
+.hotel-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.hotel {
+  display: flex;
+  gap: 16px;
+  background: var(--bg);
+  padding: 12px;
+  border-radius: var(--radius-sm);
+}
+
+.hotel img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+}
+
+.hotel h4 {
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.hotel p {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+
+/* RIGHT PANEL */
+.right {
+  flex: 1;
+}
+
+.right iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .left {
+    width: 100%;
+    flex: none;
+    overflow-y: visible;
+  }
+
+  .right {
+    height: 300px;
+    flex: none;
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   ROUTE PLANNER STYLES
+   ═══════════════════════════════════════════════════ */
+
+/* ── Summary card ────────────────────────────────── */
+.route-summary-card {
+  background: var(--primary-light);
+  border: 1px solid #bfdbfe;
+  border-radius: var(--radius-md);
+  padding: 20px;
+  margin: 16px;
+}
+.route-summary-card h3 {
+  font-size: 18px;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.route-summary-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.route-stat {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+.route-stat strong {
+  display: block;
+  font-size: 16px;
+  color: var(--text-primary);
+  margin-top: 2px;
+}
+
+/* ── Day header ──────────────────────────────────── */
+.route-day {
+  margin: 16px;
+}
+.route-day-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--primary);
+}
+.route-day-header .day-badge {
+  background: var(--primary);
+  color: white;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.route-day-end {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-top: 4px;
+  margin-left: 26px;
+  padding-left: 16px;
+}
+
+/* ── Timeline ────────────────────────────────────── */
+.route-timeline {
+  position: relative;
+  padding-left: 16px;
+  margin-left: 13px;
+  border-left: 2px dashed var(--primary);
+}
+
+/* ── Individual stop ─────────────────────────────── */
+.route-stop {
+  position: relative;
+  padding: 0 0 20px 20px;
+}
+.route-stop:last-child {
+  padding-bottom: 4px;
+}
+
+/* Dot */
+.route-dot {
+  position: absolute;
+  left: -24px;
+  top: 3px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--primary);
+  border: 2px solid white;
+  box-shadow: 0 0 0 2px var(--primary);
+}
+.route-dot--start,
+.route-dot--end {
+  width: 16px;
+  height: 16px;
+  left: -26px;
+  top: 1px;
+}
+.route-dot--end {
+  background: var(--success);
+  box-shadow: 0 0 0 2px var(--success);
+}
+
+/* Stop content */
+.route-stop-name {
+  font-weight: 600;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.route-stop-time {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--primary);
+  min-width: 68px;
+}
+.route-stop-meta {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* ── Transport chip ──────────────────────────────── */
+.route-transport-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #f0f7ff;
+  color: var(--primary);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  margin: 6px 0 4px;
+}
+.route-maps-link {
+  font-size: 11px;
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 600;
+  margin-left: 4px;
+}
+.route-maps-link:hover {
+  text-decoration: underline;
+}
+
+/* ── Navigation button per day ───────────────────── */
+.route-nav-btn {
+  display: block;
+  width: calc(100% - 32px);
+  margin: 6px 16px 20px;
+  padding: 12px;
+  background: var(--success);
+  color: white;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.route-nav-btn:hover {
+  background: #15803d;
+}
+
+/* ── Action buttons row ──────────────────────────── */
+.route-actions {
+  display: flex;
+  gap: 8px;
+  margin: 0 16px 20px;
+  flex-wrap: wrap;
+}
+.route-action-btn {
+  flex: 1;
+  min-width: 100px;
+  padding: 10px 12px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--text-primary);
+  transition: background 0.15s, border-color 0.15s;
+  text-align: center;
+}
+.route-action-btn:hover {
+  background: var(--primary-light);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* ── Travel mode bar ─────────────────────────────── */
+.travel-mode-bar {
+  display: flex;
+  background: white;
+  border-bottom: 1px solid var(--border);
+  padding: 6px 8px;
+  gap: 4px;
+}
+.travel-mode-btn {
+  flex: 1;
+  padding: 8px 4px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: all 0.2s;
+}
+.travel-mode-btn.active {
+  background: var(--primary-light);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+.travel-mode-btn:hover:not(.active) {
+  background: #f0f7ff;
+}
+
+/* ── Empty state ─────────────────────────────────── */
+.route-empty {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-secondary);
+}
+.route-empty h3 {
+  margin-bottom: 8px;
+  color: var(--text-primary);
+}
+
+/* ── Print styles ────────────────────────────────── */
+@media print {
+  .right, .tabs, .hero, .share-btn, .travel-mode-bar,
+  .route-nav-btn, .route-actions, .route-maps-link {
+    display: none !important;
+  }
+  .left {
+    width: 100% !important;
+    border: none !important;
+  }
+  .container {
+    display: block !important;
+  }
+  #tab-route {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  #tab-plan, #tab-hotel, #tab-expenses {
+    display: none !important;
+  }
+  .route-summary-card {
+    border: 1px solid #ccc;
+    page-break-after: avoid;
+  }
+  .route-day {
+    page-break-inside: avoid;
+  }
+}

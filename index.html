@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trip Planner</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/index.css">
+  <link rel="stylesheet" href="styles/form.css">
+  <link rel="stylesheet" href="styles/destinations.css">
+</head>
+
+<body>
+  <!-- PLANNING FORM -->
+  <div class="form-bar">
+    <button class="form-close"
+      style="position:absolute;top:16px;right:16px;background:none;border:1px solid #ccc;width:36px;height:36px;border-radius:50%;font-size:18px;cursor:pointer;z-index:1001">✕</button>
+    <div class="container">
+      <div class="progress-bar-header">
+        <div class="progress-bar"
+          style="background: var(--border); display: flex; height: 6px; border-radius: var(--radius-full); margin-bottom: 12px; overflow: hidden;">
+          <div style="width: 25%; background: var(--primary); height: 100%;"></div>
+        </div>
+        <div class="progress-status"
+          style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 500; color: var(--text-muted);">
+          <div style="color: var(--primary);">Trip Details</div>
+          <div>Pick Spots</div>
+          <div>Choose Hotel</div>
+          <div>Done</div>
+        </div>
+      </div>
+      <div class="form-content" id="form-content">
+        <h1>Plan your Travel and destination</h1>
+        <div class="input-container">
+          <div class="input-sub-container">
+            <div>
+              <label for="start-location">From</label>
+              <input type="text" id="start-location" name="start-location" placeholder="Enter starting location">
+            </div>
+            <div>
+              <label for="destination">To / Destination</label>
+              <input type="text" id="destination" name="destination" placeholder="Enter destination">
+            </div>
+          </div>
+          <div class="input-2sub-container">
+            <div>
+              <label for="start-date">Trip Start</label>
+              <input type="date" id="start-date" name="start-date">
+            </div>
+            <div>
+              <label for="end-date">Trip End</label>
+              <input type="date" id="end-date" name="end-date">
+            </div>
+            <div>
+              <label for="budget">Total budget ₹</label>
+              <input type="number" id="budget" name="budget" min="0" placeholder="e.g. 50000">
+            </div>
+            <div>
+              <label for="people">Travellers</label>
+              <input type="number" id="people" name="people" min="1" max="20" value="1">
+            </div>
+          </div>
+          <button class="continue-btn-form">Continue &rarr;</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="logo">tripPlanner</div>
+    <div class="nav-center">
+      <!-- Center items hidden on mobile -->
+      <a href="#destinations">Destinations</a>
+      <a href="#features">Travel Styles</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div>
+      <button class="btn-outline js-login-signup">Login / Sign up</button>
+      <button class="hamburger" onclick="/* Handle mobile menu */">&#9776;</button>
+    </div>
+  </header>
+
+  <div class="content-container">
+
+    <!-- HERO SECTION -->
+    <section class="hero-section hero">
+      <div class="hero-overlay"></div>
+      <div class="hero-content hero-text">
+        <div class="hero-pill">✈ Plan smarter. Travel better.</div>
+        <h1>Just Explore, Leave the planning to us.</h1>
+        <p>We design journeys that truly feel yours. Because they are.</p>
+        <button class="btn-primary hero-cta js-plan-button">Plan your trip &rarr;</button>
+      </div>
+    </section>
+
+    <!-- SECTION 2: Features -->
+    <section id="features" class="features-section">
+      <h2>Because every journey deserves comfort</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <!-- Using simple emoji/character as placeholder for icon since instructions say restyle only, layout update -->
+            ✨
+          </div>
+          <h3>Dream It, Tell Us.</h3>
+          <p>Tell us your vibe — romantic, offbeat, solo, or group. AI turns it into a real plan instantly.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            ❤️
+          </div>
+          <h3>Smart + Soulful Itineraries.</h3>
+          <p>Built by AI + local experts, you get a plan that's logical and love-filled.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            💵
+          </div>
+          <h3>Transparent Pricing, Always.</h3>
+          <p>No hidden charges, commissions or shady operators. You pay for what you pick.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            🛡️
+          </div>
+          <h3>All-Cover Shield.</h3>
+          <p>Travel with 24*7 concierge, local on-ground help & insurance advisory that has your back.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: Destinations -->
+    <section id="destinations" class="destinations-section">
+      <h2>Popular Destinations</h2>
+      <p>Explore India's most loved travel destinations with curated landmark experiences</p>
+      <div class="city-cards-grid">
+        <div class="city-card" data-city="Mumbai">
+          <div class="city-card-image">
+            <img src="pictures/location/tour spots/tour spots/maharashtra/mumbai/gateway of india.jpg" alt="Mumbai - Gateway of India">
+          </div>
+          <h3>Mumbai</h3>
+          <p>Experience the Gateway of India and vibrant city life</p>
+          <button class="btn-primary city-plan-btn">Plan Trip</button>
+        </div>
+        <div class="city-card" data-city="Delhi">
+          <div class="city-card-image">
+            <img src="pictures/location/tour spots/tour spots/new delhi/india-gate.jpg" alt="Delhi - India Gate">
+          </div>
+          <h3>Delhi</h3>
+          <p>Discover the historic India Gate and Mughal heritage</p>
+          <button class="btn-primary city-plan-btn">Plan Trip</button>
+        </div>
+        <div class="city-card" data-city="Jaipur">
+          <div class="city-card-image">
+            <img src="pictures/location/tour spots/tour spots/rajasthan/jaypur/hawa mahal.jpg" alt="Jaipur - Hawa Mahal">
+          </div>
+          <h3>Jaipur</h3>
+          <p>Marvel at the pink city and royal palaces</p>
+          <button class="btn-primary city-plan-btn">Plan Trip</button>
+        </div>
+        <div class="city-card" data-city="Agra">
+          <div class="city-card-image">
+            <img src="pictures/location/tour spots/tour spots/uttar pradesh/Agra/tajMahal.jpg" alt="Agra - Taj Mahal">
+          </div>
+          <h3>Agra</h3>
+          <p>Witness the iconic Taj Mahal and timeless love</p>
+          <button class="btn-primary city-plan-btn">Plan Trip</button>
+        </div>
+        <div class="city-card" data-city="Varanasi">
+          <div class="city-card-image">
+            <img src="pictures/location/tour spots/tour spots/uttar pradesh/varanasi/dasaswamedh ghat.jpg" alt="Varanasi - Dashashwamedh Ghat">
+          </div>
+          <h3>Varanasi</h3>
+          <p>Experience the spiritual Ganges ghats and ancient temples</p>
+          <button class="btn-primary city-plan-btn">Plan Trip</button>
+        </div>
+        <div class="city-card" data-city="Udaipur">
+          <div class="city-card-image">
+            <img src="pictures/location/tour spots/tour spots/rajasthan/Udaipur/city palace.jpg" alt="Udaipur - City Palace">
+          </div>
+          <h3>Udaipur</h3>
+          <p>Explore the city of lakes and majestic palaces</p>
+          <button class="btn-primary city-plan-btn">Plan Trip</button>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- SECTION 4 -->
+    <section class="where-next">
+      <img src="pictures/nature.jpeg" alt="Nature Destination">
+      <div class="where-next-content side-text">
+        <h2>Where Will You Go Next?<br>Let's Plan It.</h2>
+        <p>Pick a place, pack your bags, and leave the planning to us — your next adventure is just a click away!</p>
+        <button class="btn-primary js-plan-button">Plan</button>
+        <div class="stats-row count">
+          <div class="stat-item">
+            <h3>100k+</h3>
+            <small>Happy Travellers</small>
+          </div>
+          <div class="stat-item">
+            <h3>500k+</h3>
+            <small>Destinations</small>
+          </div>
+          <div class="stat-item">
+            <h3>4.8</h3>
+            <small>Rated By Travellers</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: About -->
+    <section id="about" class="wanderful-section">
+      <h2>What Makes Us Wander-ful</h2>
+      <div class="wanderful-grid">
+        <div class="card wanderful-card">
+          <h3>Smarter Than Any Search Engine.</h3>
+          <p>AI pulls the best flights, stays & activities from 1100+ platforms — so you don’t waste hours comparing.
+          </p>
+        </div>
+        <div class="card wanderful-card">
+          <h3>Locals + Experts, On Your Side.</h3>
+          <p>AI builds, humans perfect. Every trip is fine-tuned by on-ground experts & travel curators who know the
+            real deal.</p>
+        </div>
+        <div class="card wanderful-card">
+          <h3>Plans That Actually Flow.</h3>
+          <p>No awkward gaps or wasted days — from airport pickups to late-night food tours, your itinerary just works.
+          </p>
+        </div>
+        <div class="card wanderful-card">
+          <h3>Always a Human Behind the Screen.</h3>
+          <p>24×7 WhatsApp concierge. Got stuck, missed a flight, or want a table with a view? One ping and it’s done.
+          </p>
+        </div>
+        <div class="card wanderful-card">
+          <h3>Zero Guesswork, All Trust.</h3>
+          <p>Backed by 1000+ reviews, global partners, and verified local hosts — you only get tried & trusted
+            experiences.</p>
+        </div>
+        <div class="card wanderful-card">
+          <h3>No Stress, Just Plan B Ready.</h3>
+          <p>Weather turned bad? Activity sold out? We’ll swap in an equally amazing alternative before you even ask.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6 -->
+    <section class="gallery-section">
+      <h2>Memories Made With Us</h2>
+      <p>A glimpse into the journeys, joy, and unforgettable moments our travelers have lived, all captured in these
+        beautiful glimpses from around the world.</p>
+      <div class="gallery-grid img-container">
+        <div class="gallery-img-wrapper"><img src="pictures/person1.jpg" alt="Gallery">
+          <div class="gallery-overlay"></div>
+        </div>
+        <div class="gallery-img-wrapper"><img src="pictures/person2.jpg" alt="Gallery">
+          <div class="gallery-overlay"></div>
+        </div>
+        <div class="gallery-img-wrapper"><img src="pictures/person3.jpg" alt="Gallery">
+          <div class="gallery-overlay"></div>
+        </div>
+      </div>
+      <input type="file" id="gallery-file-input" accept="image/*" multiple style="display:none">
+      <button class="btn-outline" id="add-image-btn">Add Image</button>
+    </section>
+    <script>
+      document.getElementById('add-image-btn').addEventListener('click', () => {
+        document.getElementById('gallery-file-input').click();
+      });
+      document.getElementById('gallery-file-input').addEventListener('change', (e) => {
+        const grid = document.querySelector('.gallery-grid');
+        if (!grid) return;
+        Array.from(e.target.files).forEach(file => {
+          const reader = new FileReader();
+          reader.onload = (ev) => {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'gallery-img-wrapper';
+            wrapper.innerHTML = `<img src="${ev.target.result}" alt="User photo"><div class="gallery-overlay"></div>`;
+            grid.appendChild(wrapper);
+          };
+          reader.readAsDataURL(file);
+        });
+        e.target.value = '';
+      });
+    </script>
+
+    <!-- SECTION 7 -->
+    <section class="cta-banner">
+      <div class="cta-overlay"></div>
+      <div class="cta-content">
+        <h2>Let's Turn That Wanderlust Into a Boarding Pass</h2>
+        <p>We'll take you from "wish you fun" to a perfectly curated adventure. All you have to do is show up, grinning
+          like Tarzan!</p>
+        <button class="btn-primary js-plan-button">Plan your trip</button>
+      </div>
+    </section>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <!-- TOP SUBSCRIBE BAR -->
+    <div id="contact" class="subscribe-bar">
+      <div class="subscribe-text">
+        <h2>Good Vibes & Great Deals,<br> Straight to You.</h2>
+      </div>
+      <div class="subscribe-box">
+        <input type="email" placeholder="Email Address">
+        <button>Subscribe</button>
+      </div>
+    </div>
+
+    <!-- FOOTER CONTENT -->
+    <div class="footer-content">
+      <!-- LEFT -->
+      <div class="footer-col">
+        <h3 class="logo">tripPlanner</h3>
+        <p>
+          We design personalised travel experiences powered by smart planning.
+          Discover, plan and explore seamlessly.
+        </p>
+        <div class="socials">
+          <div>🌐</div>
+          <div>📘</div>
+          <div>📸</div>
+          <div>💼</div>
+          <div>📌</div>
+        </div>
+        <div class="contact">
+          <p>📞 +91 8448687703</p>
+          <p>✉ info@tripPlanner.com</p>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Travel Destinations</h4>
+        <div class="links">
+          <div class="dest-link" data-dest="Chikhaldara" style="cursor:pointer">Chikhaldara</div>
+          <div class="dest-link" data-dest="Jaipur" style="cursor:pointer">Jaipur</div>
+          <div class="dest-link" data-dest="Agra" style="cursor:pointer">Agra</div>
+          <div class="dest-link" data-dest="Rajasthan" style="cursor:pointer">Rajasthan</div>
+          <div class="dest-link" data-dest="Gujarat" style="cursor:pointer">Gujarat</div>
+          <div class="dest-link" data-dest="Delhi" style="cursor:pointer">Delhi</div>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Travel Styles</h4>
+        <div class="links">
+          <div class="style-link" data-dest="hill station" style="cursor:pointer">Personalised</div>
+          <div class="style-link" data-dest="festival India" style="cursor:pointer">Festivals</div>
+          <div class="style-link" data-dest="summer trip India" style="cursor:pointer">Summer Trips</div>
+          <div>Road Trips</div>
+          <div>Budget Travel</div>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Company</h4>
+        <div class="links">
+          <div>Blogs</div>
+          <div>For Corporates</div>
+          <div>Testimonials</div>
+          <div>About Us</div>
+          <div>Contact</div>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Terms & Policies</h4>
+        <div class="links">
+          <div>Terms of Service</div>
+          <div>Privacy Policy</div>
+          <div>Safety</div>
+          <div>Subscribe</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 TravelWay. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Quick logic to update header if logged in since requirements mentioned checking localStorage
+    document.addEventListener('DOMContentLoaded', () => {
+      const token = localStorage.getItem('token');
+      const loginBtn = document.querySelector('.js-login-signup');
+      if (token && loginBtn) {
+        const userName = localStorage.getItem('userName') || 'User';
+        loginBtn.textContent = userName + ' - Dashboard';
+        loginBtn.onclick = () => window.location.href = 'dashBoard.html';
+      }
+    });
+  </script>
+  <script type="module" src="script/main.js"></script>
+  <script type="module" src="script/form.js"></script>
+</body>
+
+</html>

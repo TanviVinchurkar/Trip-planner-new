@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile Page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/dashboard.css">
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <div class="navbar">
+    <div class="logo">tripPlanner</div>
+    <div class="search-box">
+      <input type="text" placeholder="Search destinations...">
+    </div>
+    <div class="nav-right">
+      <button class="btn btn-primary" style="padding: 8px 16px; font-size: 14px;">Plan Trip</button>
+      <div class="user-menu-wrapper" style="position: relative;">
+        <div class="user" onclick="document.getElementById('user-dropdown').classList.toggle('show')">User ▾</div>
+        <div id="user-dropdown" class="dropdown">
+          <div id="dropdown-profile">Profile</div>
+          <div id="dropdown-logout">Logout</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="profile-container">
+
+    <div class="card profile-card">
+      <div class="profile-left">
+        <div class="avatar">U</div>
+        <div>
+          <div class="name">User name</div>
+          <div class="edit" style="color: var(--primary); font-size: 13px; font-weight: 500; cursor: pointer;">Edit Profile</div>
+        </div>
+      </div>
+
+      <div class="profile-right">
+        <div class="info-block">
+          <div class="label">Phone</div>
+          <div class="value">Contact Number</div>
+        </div>
+        <div class="info-block">
+          <div class="label">Email</div>
+          <div class="value">User Email</div>
+        </div>
+        <div class="info-block">
+          <div class="label">Notifications</div>
+          <div class="value">WhatsApp Updates Enabled</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Trips Section -->
+  <div class="trip-section">
+    <div class="trip-header">
+      <div class="title">Your Trips <span class="trip-count badge-count">0</span></div>
+      <div class="trip-filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="planned">Planned</button>
+        <button class="filter-btn" data-filter="ongoing">Ongoing</button>
+        <button class="filter-btn" data-filter="completed">Completed</button>
+      </div>
+      <div class="trip-search">
+        <input type="text" placeholder="Search by destination...">
+      </div>
+    </div>
+
+    <div class="trip-grid">
+      <!-- Trip cards rendered by dashboard.js -->
+    </div>
+
+  </div>
+
+  <script type="module" src="script/dashboard.js"></script>
+</body>
+
+</html>

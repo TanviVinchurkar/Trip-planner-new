@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shared Trip</title>
+  <link rel="stylesheet" href="styles/plan.css">
+  <style>
+    .share-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: #27ae60;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="left">
+    <div class="share-badge">✓ Shared by Friend</div>
+    <div class="hero">
+      <img src="" alt="" style="width:100%;height:300px;object-fit:cover">
+      <div class="hero-text">
+        <h2></h2>
+        <p></p>
+      </div>
+    </div>
+
+    <div class="tabs">
+      <button class="active">Plan</button>
+      <button>Hotel Booked</button>
+    </div>
+
+    <div class="card">
+      <h3>About Destination</h3>
+      <p></p>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h3>Recommended Stays</h3>
+      </div>
+      <div class="hotel-list"></div>
+    </div>
+
+    <div class="card">
+      <h3>Itinerary</h3>
+      <div id="itinerary-content"></div>
+    </div>
+  </div>
+
+  <div class="right">
+    <iframe src=""></iframe>
+  </div>
+</div>
+
+<script type="module">
+  import { getTripByShareLink } from './script/api.js';
+
+  // Get shareLink from URL params
+  const params = new URLSearchParams(window.location.search);
+  const shareLink = params.get('link');
+
+  if (!shareLink) {
+    document.querySelector('.container').innerHTML = `
+      <div style="padding:3rem;text-align:center">
+        <h2>Invalid share link</h2>
+        <p>Please check the URL and try again.</p>
+      </div>`;
+  } else {
+    // Load trip by share link
+    (async () => {
+      try {
+        const trip = await getTripByShareLink(shareLink);
+        renderSharedTrip(trip);
+      } catch (err) {
+        document.querySelector('.container').innerHTML = `
+          <div style="padding:3rem;text-align:center">
+            <h2>Trip not found or access denied</h2>
+            <p>${err.message}</p>
+          </div>`;
+      }
+    })();
+  }
+
+  function renderSharedTrip(trip) {
+    const start = new Date(trip.startDate);
+    const end = new Date(trip.endDate);
+    const days = trip.days || Math.max(1, Math.ceil((end - start) / (1000 * 60 * 60 * 24)));
+
+    const fmt = (d) => d ? new Date(d).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' }) : '';
+
+    // Hero
+    const heroImg = document.querySelector('.hero img');
+    const heroTitle = document.querySelector('.hero-text h2');
+    const heroDate = document.querySelector('.hero-text p');
+
+    if (trip.destinationImage) heroImg.src = trip.destinationImage;
+    heroTitle.textContent = `${days} Day${days > 1 ? 's' : ''} Trip in ${trip.destination}`;
+    heroDate.textContent = `${fmt(trip.startDate)} – ${fmt(trip.endDate)}`;
+
+    // About card
+    const aboutCard = document.querySelector('.card p');
+    if (aboutCard) {
+      aboutCard.textContent = `${trip.destination} is a beautiful destination. ` +
+        `${days} day${days > 1 ? 's' : ''} starting ${fmt(trip.startDate)}, ` +
+        `total budget ₹${Number(trip.budget).toLocaleString('en-IN')} for ${trip.people || 1} person(s).`;
+    }
+
+    // Hotel
+    const hotelList = document.querySelector('.hotel-list');
+    if (trip.selectedHotel && hotelList) {
+      const h = trip.selectedHotel;
+      hotelList.innerHTML = `
+        <div class="hotel" style="border:2px solid #4a90e2;border-radius:8px;padding:4px">
+          <img src="${h.img || 'pictures/hotels/grandplace.png'}" alt="${h.name}">
+          <div>
+            <h4>${h.name} <span style="font-size:11px;color:#4a90e2">✔ Booked</span></h4>
+            <p>${h.rating} · ₹${Number(h.price).toLocaleString('en-IN')}/night</p>
+            <p style="font-size:12px;color:#666">${h.address || ''}</p>
+          </div>
+        </div>`;
+    }
+
+    // Itinerary
+    const itineraryContent = document.getElementById('itinerary-content');
+    if (itineraryContent) {
+      const savedItinerary = trip.itinerary || [];
+      let daysHTML = '';
+
+      for (let i = 1; i <= days; i++) {
+        const dayData = savedItinerary.find(d => d.day === i);
+        const activities = dayData?.activities || [];
+
+        daysHTML += `
+          <div class="day" data-day="${i}">
+            <h4>Day ${i} — ${fmt(new Date(start.getTime() + (i - 1) * 86400000))}</h4>
+            <ul class="activity-list">
+              ${activities.map(a => `<li>${a}</li>`).join('')}
+            </ul>
+          </div>`;
+      }
+
+      itineraryContent.innerHTML = daysHTML;
+    }
+
+    // Map
+    const mapFrame = document.querySelector('iframe');
+    if (mapFrame) {
+      mapFrame.src = `https://maps.google.com/maps?q=${encodeURIComponent(trip.destination)}&output=embed`;
+    }
+
+    // Tab handling (read-only)
+    const tabs = document.querySelectorAll('.tabs button');
+    tabs.forEach((tab, idx) => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+      });
+    });
+  }
+</script>
+</body>
+</html>

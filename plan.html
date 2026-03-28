@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trip Plan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/plan.css">
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- LEFT PANEL -->
+    <div class="left">
+
+      <!-- Hero Image Area -->
+      <div class="hero">
+        <img id="hero-img" src="" alt="destination" style="width:100%;height:220px;object-fit:cover;background:#e0e7ff">
+        <button class="share-btn">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16" height="16"
+            xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8M16 6l-4-4-4 4M12 2v13"></path>
+          </svg>
+          Share
+        </button>
+        <div class="hero-overlay"></div>
+        <div class="hero-text">
+          <h2 id="hero-title">Loading trip...</h2>
+          <p id="hero-date"></p>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="plan">Plan</button>
+        <button class="tab-btn" data-tab="route">My Route</button>
+        <button class="tab-btn" data-tab="hotel">Hotel Booked</button>
+        <button class="tab-btn" data-tab="expenses">Expenses</button>
+      </div>
+
+      <!-- TAB: PLAN -->
+      <div id="tab-plan" class="tab-content" style="display:flex;flex-direction:column">
+
+        <div class="card">
+          <h3>About Destination</h3>
+          <p id="about-text">Loading...</p>
+          <div class="weather-row"></div>
+        </div>
+
+        <!-- Itinerary card — plan.js builds and appends this -->
+
+      </div>
+
+      <!-- TAB: HOTEL -->
+      <div id="tab-hotel" class="tab-content" style="display:none;flex-direction:column">
+        <div class="card">
+          <h3>Recommended Stays</h3>
+          <div class="hotel-list" id="hotel-list">
+            <!-- plan.js fills this -->
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB: MY ROUTE -->
+      <div id="tab-route" class="tab-content" style="display:none;flex-direction:column">
+        <div id="route-container">
+          <!-- plan.js fills this with route timeline -->
+        </div>
+      </div>
+
+      <!-- TAB: EXPENSES -->
+      <div id="tab-expenses" class="tab-content" style="display:none;flex-direction:column">
+        <div class="card">
+          <h3>Trip Expenses</h3>
+          <div id="expenses-content">
+            <!-- plan.js fills this -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <div class="right">
+      <div class="travel-mode-bar" id="travel-mode-bar">
+        <button class="travel-mode-btn active" data-mode="driving">🚗 Drive</button>
+        <button class="travel-mode-btn" data-mode="walking">🚶 Walk</button>
+        <button class="travel-mode-btn" data-mode="transit">🚌 Transit</button>
+        <button class="travel-mode-btn" data-mode="bicycling">🚴 Bike</button>
+      </div>
+      <iframe id="trip-map" src="" style="width:100%;height:100%;border:none"></iframe>
+    </div>
+
+  </div>
+
+  <script type="module" src="script/plan.js"></script>
+
+</body>
+
+</html>

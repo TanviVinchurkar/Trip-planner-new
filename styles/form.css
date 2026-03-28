@@ -1,0 +1,335 @@
+/* FORM OVERLAY */
+.form-bar {
+  display: none;
+  /* JS will toggle this */
+  position: fixed;
+  inset: 0;
+  background: white;
+  /* Changed from red to white per request */
+  z-index: 1000;
+  overflow-y: auto;
+  padding: 40px 20px;
+}
+
+/* Close Button */
+.close-form-btn {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: background 0.2s;
+  z-index: 1010;
+}
+
+.close-form-btn:hover {
+  background: var(--bg);
+}
+
+/* Container */
+.form-bar .container {
+  max-width: 560px;
+  margin: 40px auto 0;
+  background: var(--card);
+  box-shadow: var(--shadow-lg);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  position: relative;
+}
+
+/* Form Content */
+.form-content h1 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  text-align: center;
+  color: var(--text-primary);
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.input-sub-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.input-sub-container>div {
+  position: relative;
+}
+
+.input-sub-container label {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.input-2sub-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.input-2sub-container>div {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-2sub-container label {
+  margin-bottom: 6px;
+}
+
+.continue-btn-form {
+  background: var(--primary);
+  color: white;
+  padding: 14px;
+  border-radius: var(--radius-full);
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+  width: 100%;
+  margin-top: 16px;
+}
+
+.continue-btn-form:hover {
+  background: var(--primary-dark);
+}
+
+/* Map Location Input icons - you could use background images or pseudo elements */
+#start-location {
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%236B7280" viewBox="0 0 16 16"><path d="M8 0a5 5 0 0 0-5 5c0 3.333 5 11 5 11s5-7.667 5-11a5 5 0 0 0-5-5zm0 7.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>') no-repeat 14px center;
+  padding-left: 40px;
+}
+
+#destination {
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%236B7280" viewBox="0 0 16 16"><path d="M8 2a6 6 0 1 0 0 12A6 6 0 0 0 8 2zm0 8.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>') no-repeat 14px center;
+  padding-left: 40px;
+}
+
+/* APPENDED SPOTS & HOTELS FIX */
+.header { text-align: center; margin: 20px 0; }
+.header h1 { font-size: 28px; color: var(--primary); margin-bottom: 8px;}
+.subtitle { color: var(--text-secondary); margin-bottom: 20px; font-size:14px; }
+
+/* SPOTS */
+.spots-section { width: 100%; margin-bottom: 20px;}
+.card-container {
+  display: flex;
+  width: 100%;
+  overflow-x: auto;
+  gap: 16px;
+  padding-bottom: 15px;
+}
+.card-container::-webkit-scrollbar { height: 8px; }
+.card-container::-webkit-scrollbar-track { background: var(--bg); border-radius: 4px; }
+.card-container::-webkit-scrollbar-thumb { background: #bbb; border-radius: 4px; }
+
+.spot-card {
+  min-width: 90%; /* Fit elegantly inside container */
+  max-width: 100%;
+  background: white;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column; /* Stack image and text for smaller screens */
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+@media (min-width: 600px) {
+  .spot-card { flex-direction: row; height: 200px; min-width: 480px; }
+}
+
+.info {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.info h2 { font-size: 18px; color: var(--primary); margin-bottom: 4px; text-align:left; }
+.info p { font-size: 13px; margin: 2px 0; color: var(--text-secondary); }
+
+.image-box {
+  flex: 1;
+  position: relative;
+  min-height: 160px;
+}
+.image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.add-btn {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.added-section { margin-top: 24px; }
+.added-section h2 { font-size:18px; margin-bottom: 12px; text-align:left;}
+.added-container {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.added-card {
+  width: 140px;
+  height: 100px;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid var(--border);
+}
+.added-card img { width: 100%; height: 100%; object-fit: cover; }
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 8px;
+}
+.overlay h3 { color: white; font-size: 12px; margin:0; text-align:left;}
+.remove-btn {
+  align-self: flex-end;
+  background: var(--danger);
+  border: none;
+  color: white;
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* HOTELS */
+.preferences { text-align: center; margin-bottom: 24px; }
+.budget-box {
+  background: var(--primary-light);
+  padding: 12px 20px;
+  border-radius: var(--radius-sm);
+  display: inline-block;
+  margin-bottom: 16px;
+}
+.budget-box h3 { font-size:14px; color: var(--text-secondary); margin-bottom:4px; }
+.budget-box p { font-weight:700; font-size:18px; color: var(--primary); }
+
+.stars button {
+  margin: 4px;
+  padding: 8px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: white;
+  cursor: pointer;
+  transition: 0.2s;
+  font-size: 13px;
+}
+.stars button:hover, .stars button.active { background: var(--border); }
+
+.hotels h2 { font-size:18px; margin-bottom: 16px; text-align:left; }
+.hotel-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.hotel-card {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+}
+@media (min-width: 500px) {
+  .hotel-card { flex-direction: row; }
+}
+.hotel-card img {
+  width: 100%; height: 160px; object-fit: cover;
+}
+@media (min-width: 500px) {
+  .hotel-card img { width: 140px; height: 140px; }
+}
+.hotel-info {
+  flex: 1;
+  padding: 12px;
+}
+.hotel-info h3 { font-size:16px; color: var(--text-primary); margin-bottom:4px; text-align:left;}
+.address { color: var(--text-secondary); font-size: 13px; }
+.price { font-weight: bold; margin-top: 4px; font-size:14px;}
+.select-btn {
+  margin: 12px;
+  padding: 8px 16px;
+  background: white;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  align-self: flex-start;
+  font-size:13px; font-weight:600;
+}
+.select-btn:hover { background: var(--primary-light); }
+.bottom-btn { width:100%; margin-top: 24px; padding: 14px; }
+
+/* ── Dynamic step navigation buttons (Steps 2, 3) ── */
+.step-nav {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+.continue-btn {
+  flex: 1;
+  background: var(--primary);
+  color: white;
+  padding: 14px 24px;
+  border-radius: var(--radius-full);
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  text-align: center;
+}
+.continue-btn:hover { background: var(--primary-dark); }
+.continue-btn:active { transform: scale(0.98); }
+.continue-btn:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+.back-btn {
+  background: white;
+  color: var(--primary);
+  padding: 14px 20px;
+  border-radius: var(--radius-full);
+  font-size: 15px;
+  font-weight: 600;
+  border: 2px solid var(--primary);
+  cursor: pointer;
+  transition: 0.2s;
+  white-space: nowrap;
+}
+.back-btn:hover { background: var(--primary-light); }
